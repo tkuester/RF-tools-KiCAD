@@ -355,7 +355,17 @@ class ViaFenceAction(pcbnew.ActionPlugin):
             self.boardDesignSettingsObj = self.boardObj.GetDesignSettings()
             self.boardPath = os.path.dirname(os.path.realpath(self.boardObj.GetFileName()))
             self.layerMap = self.getLayerMap()
-            self.highlightedNetId = self.boardObj.GetHighLightNetCode()
+
+            # Nasty work around... GetHighLightNetCodes returns a swig object >_<
+            hl_nets = filter(lambda x: x.IsSelected(), self.boardObj.GetTracks())
+            hl_net_codes = set(net.GetNetCode() for net in hl_nets)
+            if len(hl_net_codes) == 1:
+                self.highlightedNetId = hl_net_codes.pop()
+            else:
+                wdlg = wx.MessageDialog(None, u"\u2718 ERROR Please only select one net",'ERROR message',wx.OK | wx.ICON_WARNING)# wx.ICON_ERROR)
+                result = wdlg.ShowModal()
+                return
+
             self.netMap = self.getNetMap()
             self.netFilterList = self.createNetFilterSuggestions()
             self.netFilter = self.netMap[self.highlightedNetId].GetNetname() if self.highlightedNetId != -1 else self.netFilterList[0]
