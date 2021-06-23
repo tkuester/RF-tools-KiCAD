@@ -351,7 +351,8 @@ def solderExpander(pcb,tracks,clearance):
                 mask_layer = pcbnew.F_Mask
             wxLogDebug(" * Track: %s to %s, width %f mask_width %f" % (ToUnits(start),ToUnits(end),ToUnits(width), ToUnits(mask_width)),debug)
             #print (" * Track: %s to %s, width %f mask_width %f" % (ToUnits(start),ToUnits(end),ToUnits(width), ToUnits(mask_width)))
-            new_soldermask_line = pcbnew.DRAWSEGMENT(pcb)
+            new_soldermask_line = pcbnew.PCB_SHAPE(pcb)
+            new_soldermask_line.SetShape(pcbnew.PCB_SHAPE_TYPE_SEGMENT)
             new_soldermask_line.SetStart(start)
             new_soldermask_line.SetEnd(end)
             new_soldermask_line.SetWidth(width+2*mask_width) #FromUnits(int(mask_width)))
