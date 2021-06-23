@@ -121,8 +121,8 @@ class ViaFenceAction(pcbnew.ActionPlugin):
     def checkPads(self):
     ##Check vias collisions with all pads => all pads on all layers
         #wxPrint("Processing all pads...")
-        #self.clearance = 0 #TBF
-        self.clearance = self.boardObj.GetDesignSettings().GetDefault().GetClearance()
+        self.clearance = 0 #TBF
+        #self.clearance = self.boardObj.GetDesignSettings().GetDefault().GetClearance()
         #lboard = self.boardObj.ComputeBoundingBox(False)
         #origin = lboard.GetPosition()
         # Create an initial rectangle: all is set to "REASON_NO_SIGNAL"
@@ -137,7 +137,8 @@ class ViaFenceAction(pcbnew.ActionPlugin):
             #wx.LogMessage(str(self.viaPointsSafe))
             #wx.LogMessage(str(pad.GetPosition()))
             #local_offset = max(pad.GetClearance(), self.clearance, max_target_area_clearance) + (self.size / 2)
-            local_offset = max(pad.GetClearance(), self.clearance) + (self.viaSize / 2)
+            pad_clr = 0 # FIXME
+            local_offset = max(pad_clr, self.clearance) + (self.viaSize / 2)
             max_size = max(pad.GetSize().x, pad.GetSize().y)
             
             #start_x = int(floor(((pad.GetPosition().x - (max_size / 2.0 + local_offset)) - origin.x) / l_clearance))
@@ -181,8 +182,8 @@ class ViaFenceAction(pcbnew.ActionPlugin):
         
     def checkTracks(self):
     ##Check vias collisions with all tracks
-        #self.clearance = 0 #TBF
-        self.clearance = self.boardObj.GetDesignSettings().GetDefault().GetClearance()
+        self.clearance = 0 #TBF
+        #self.clearance = self.boardObj.GetDesignSettings().GetDefault().GetClearance()
         #lboard = self.boardObj.ComputeBoundingBox(False)
         #origin = lboard.GetPosition()
         # Create an initial rectangle: all is set to "REASON_NO_SIGNAL"
@@ -198,7 +199,9 @@ class ViaFenceAction(pcbnew.ActionPlugin):
             #wx.LogMessage(str(self.viaPointsSafe))
             #wx.LogMessage(str(pad.GetPosition()))
             #local_offset = max(pad.GetClearance(), self.clearance, max_target_area_clearance) + (self.size / 2)
-            local_offset = max(track.GetClearance(), self.clearance) + (self.viaSize / 2)
+            trk_clr = 0 # FIXME
+            #trk_clr = track.GetClearance()
+            local_offset = max(trk_clr, self.clearance) + (self.viaSize / 2)
             #wxLogDebug(str(max_size),True)
             #max_size = max(pad.GetSize().x, pad.GetSize().y)
             
