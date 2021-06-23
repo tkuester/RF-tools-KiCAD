@@ -121,7 +121,7 @@ def selected_tracks(pcb):
     """
     tracks = []
     for item in pcb.GetTracks():
-        if type(item) is pcbnew.TRACK and item.IsSelected():
+        if type(item) is pcbnew.PCB_TRACK and item.IsSelected():
             tracks.append(item)
     return tracks
 

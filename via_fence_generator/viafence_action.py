@@ -232,7 +232,7 @@ class ViaFenceAction(pcbnew.ActionPlugin):
                     #wxLogDebug(str(track.GetNetCode()),True)
                     #wxLogDebug(str(self.viaNetId),True)
                     #wxLogDebug(str(type(track)),True)
-                    if track.GetNetCode() != self.viaNetId or type(track) != pcbnew.TRACK: #PCB_VIA_T:
+                    if track.GetNetCode() != self.viaNetId or type(track) != pcbnew.PCB_TRACK: #PCB_VIA_T:
                         #wxLogDebug('here',True)
                         #if track.HitTest(pcbnew.EDA_RECT(start_rect, size_rect), False):
                         aContained=False;aAccuracy=0
@@ -406,7 +406,7 @@ class ViaFenceAction(pcbnew.ActionPlugin):
                 # Do we want to include track segments?
                 if (self.isIncludeSelectionChecked):
                     for item in self.boardObj.GetTracks():
-                        if type(item) is pcbnew.TRACK and item.IsSelected():
+                        if type(item) is pcbnew.PCB_TRACK and item.IsSelected():
                             lineObjects += [item]
                     
                 # Do we want to filter the generated lines by layer?
@@ -476,7 +476,7 @@ class ViaFenceAction(pcbnew.ActionPlugin):
                 target_tracks_cp = list(target_tracks)
                 l = len (target_tracks_cp)
                 for i in range(l): 
-                    #if type(target_tracks_cp[i]) is TRACK and target_tracks_cp[i].IsSelected(): #item.GetNetname() == net_name:
+                    #if type(target_tracks_cp[i]) is PCB_TRACK and target_tracks_cp[i].IsSelected(): #item.GetNetname() == net_name:
                     self.boardObj.RemoveNative(target_tracks_cp[i])  #removing via
                 #for via in target_tracks:
                 #    #if via.GetTimeStamp() == 55:

@@ -11,6 +11,7 @@
 import sys
 import os
 from pcbnew import *
+from pcbnew import PCB_TRACK
 import wx
 import pcbnew
 import math
@@ -26,7 +27,7 @@ def wxLogDebug(msg,dbg):
 def getSelTracksLength(pcb):
     ln = 0.
     for item in pcb.GetTracks():
-        if type(item) is pcbnew.TRACK and item.IsSelected():
+        if type(item) is pcbnew.PCB_TRACK and item.IsSelected():
             ln+=(item.GetLength())
     return(ln)
     #print(pcbnew.ToMM(ln))
@@ -34,7 +35,7 @@ def getSelTracksLength(pcb):
 def getSelTracks(pcb):
     tracks=[]
     for item in pcb.GetTracks():
-        if type(item) is pcbnew.TRACK and item.IsSelected():
+        if type(item) is pcbnew.PCB_TRACK and item.IsSelected():
             tracks.append(item)
     return tracks
 #
@@ -63,7 +64,7 @@ def getTracksListLength(pcb,tracks):
 #
 def selectListTracks(pcb,tracks):
     for item in tracks:
-        if type(item) is TRACK:
+        if type(item) is PCB_TRACK:
             item.SetSelected()
 #
 def getTrackAngleRadians(track):
@@ -132,7 +133,7 @@ class SelectedTracesLenght(pcbnew.ActionPlugin):
 
 def selectListTracks(pcb,tracks):
     for item in tracks:
-        if type(item) is TRACK:
+        if type(item) is PCB_TRACK:
             item.SetSelected()
             
 def clearListTracks(pcb,tracks,refresh=None):
@@ -147,7 +148,7 @@ def clearListTracks(pcb,tracks,refresh=None):
 #def getSelTracksLength(pcb):
 #    ln = 0.
 #    for item in pcb.GetTracks():
-#        if type(item) is pcbnew.TRACK and item.IsSelected():
+#        if type(item) is pcbnew.PCB_TRACK and item.IsSelected():
 #            ln+=(item.GetLength())
 #    return(ln)
 #    #print(pcbnew.ToMM(ln))
@@ -287,7 +288,7 @@ def isConn(s1,s2):
 def getSelTracks(pcb):
     tracks=[]
     for item in pcb.GetTracks():
-        if type(item) is pcbnew.TRACK and item.IsSelected():
+        if type(item) is pcbnew.PCB_TRACK and item.IsSelected():
             tracks.append(item)
     return tracks
 #
