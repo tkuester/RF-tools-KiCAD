@@ -84,7 +84,7 @@ class uwTaper_wizard(FootprintWizardBase.FootprintWizard):
         else:
             pad.SetLayerSet( LSET(layer) )
         
-        pad.AddPrimitive(vpoints,0) # (size[0]))
+        pad.AddPrimitivePoly(vpoints, 0, True) # (size[0]))
         return pad
 
     def smdPad(self,module,size,pos,name,ptype,angle_D,layer,solder_clearance,offs=None):
