@@ -61,7 +61,7 @@ class uwTaper_wizard(FootprintWizardBase.FootprintWizard):
 
     # build a custom pad
     def smdCustomPolyPad(self, module, size, pos, name, vpoints, layer, solder_clearance):
-        pad = D_PAD(module)
+        pad = PAD(module)
         ## NB pads must be the same size and have the same center
         pad.SetSize(size)
         #pad.SetSize(pcbnew.wxSize(size[0]/5,size[1]/5))
@@ -88,7 +88,7 @@ class uwTaper_wizard(FootprintWizardBase.FootprintWizard):
         return pad
 
     def smdPad(self,module,size,pos,name,ptype,angle_D,layer,solder_clearance,offs=None):
-        pad = D_PAD(module)
+        pad = PAD(module)
         pad.SetSize(size)
         pad.SetShape(ptype)  #PAD_SHAPE_RECT PAD_SHAPE_OVAL PAD_SHAPE_TRAPEZOID PAD_SHAPE_CIRCLE 
         # PAD_ATTRIB_CONN PAD_ATTRIB_SMD
