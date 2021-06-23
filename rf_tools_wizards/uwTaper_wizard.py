@@ -188,7 +188,8 @@ class uwTaper_wizard(FootprintWizardBase.FootprintWizard):
         self.draw.Reference( 0+length/2, -textposy-height/2, text_size )
         self.draw.Value( 0+length/2, textposy+height/2+text_size/2, text_size )
         # set SMD attribute
-        module.SetAttributes(pcbnew.MOD_VIRTUAL)
+        #module.SetAttributes(pcbnew.MOD_VIRTUAL)
+        module.SetAttributes(pcbnew.FP_EXCLUDE_FROM_BOM | pcbnew.FP_EXCLUDE_FROM_POS_FILES)
         __version__ = 1.3
         self.buildmessages += ("version: {:.1f}".format(__version__))
 
