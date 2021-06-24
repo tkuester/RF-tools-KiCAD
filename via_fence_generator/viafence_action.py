@@ -436,8 +436,10 @@ class ViaFenceAction(pcbnew.ActionPlugin):
                 # Generate via fence
                 try:
                     viaPoints = generateViaFence(self.pathList, self.viaOffset, self.viaPitch)
-                except:
-                    wx.LogMessage ('exception on via fence generation')
+                except Exception as exc:
+                    wx.LogMessage('exception on via fence generation: %s' % str(exc))
+                    import traceback
+                    wx.LogMessage(traceback.format_exc())
                     viaPoints = []
         
                 if (self.isDebugDumpChecked):
