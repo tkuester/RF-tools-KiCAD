@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 #  Copyright 2019 Maurice https://github.com/easyw/
 
 # some source tips @
