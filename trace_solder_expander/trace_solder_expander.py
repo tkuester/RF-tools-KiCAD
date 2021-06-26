@@ -1,13 +1,8 @@
 #  Copyright 2019 Maurice https://github.com/easyw/
 
-# some source tips @
-# https://github.com/bpkempke/kicad-scripts
-# https://github.com/MitjaNemec/Kicad_action_plugins
-# https://github.com/jsreynaud/kicad-action-scripts
-
 # GNU GENERAL PUBLIC LICENSE
 #                        Version 3, 29 June 2007
-# 
+#
 #  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
 #  Everyone is permitted to copy and distribute verbatim copies
 #  of this license document, but changing it is not allowed.
@@ -26,39 +21,21 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 
-
 # some source tips @
 # https://github.com/bpkempke/kicad-scripts
 # https://github.com/MitjaNemec/Kicad_action_plugins
 # https://github.com/jsreynaud/kicad-action-scripts
 
-# import trace_solder_expansion; reload(trace_solder_expansion)
-
 import sys
 import os
-from pcbnew import *
-from pcbnew import PCB_TRACK
-import wx
-import pcbnew
 import math
 
-debug = False #True
-def wxLogDebug(msg,show):
-    """printing messages only if show is omitted or True"""
-    if show:
-        wx.LogMessage(msg)
-#
-#if (sys.version[0]) == '2':
-#    from .SolderExpanderDlg import SolderExpanderDlg
-#else:
-#    from .SolderExpanderDlg_py3 import SolderExpanderDlg_y3
-#from .SolderExpanderDlg import SolderExpanderDlg
+import wx
+import pcbnew
+
 from . import SolderExpanderDlg
+from .. import util
 
-
-# import trace_solder_expansion; reload(trace_solder_expansion)
-
-# Python plugin stuff
 
 class SolderExpander_Dlg(SolderExpanderDlg.SolderExpanderDlg):
     # from https://github.com/MitjaNemec/Kicad_action_plugins
